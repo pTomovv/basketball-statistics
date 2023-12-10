@@ -3,12 +3,33 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './components/pages/Home';
+import Sorted from './components/pages/MostPointsInAMatch';
+import MostPointsInAMatch from './components/pages/MostPointsInAMatch';
+import MostPointsOverall from './components/pages/MostPointsOverall';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<App />}>
+                    <Route path="/" element={<Home />} />
+                    <Route
+                        path="/most-points-in-a-match"
+                        element={<MostPointsInAMatch />}
+                    />
+                    <Route
+                        path="/most-points-overall"
+                        element={<MostPointsOverall />}
+                    />
+                    {/* <Route path="/sorted" element={<Sorted />} /> */}
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
