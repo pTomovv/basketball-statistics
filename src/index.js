@@ -5,9 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
-import Sorted from './components/pages/MostPointsInAMatch';
 import MostPointsInAMatch from './components/pages/MostPointsInAMatch';
 import MostPointsOverall from './components/pages/MostPointsOverall';
+import MostPointsBasedOnTimePlayed from './components/pages/MostPointsBasedOnTimePlayed';
+import MostPointsByTeam from './components/pages/MostPointsByTeam';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -25,7 +26,14 @@ root.render(
                         path="/most-points-overall"
                         element={<MostPointsOverall />}
                     />
-                    {/* <Route path="/sorted" element={<Sorted />} /> */}
+                    <Route
+                        path="/most-points-based-on-time-played"
+                        element={<MostPointsBasedOnTimePlayed />}
+                    />
+                    <Route
+                        path="/most-points-by-team"
+                        element={<MostPointsByTeam />}
+                    />
                 </Route>
             </Routes>
         </BrowserRouter>

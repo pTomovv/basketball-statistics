@@ -3,13 +3,13 @@ import './App.css';
 import {
     splitStringToArray,
     formatArrayToMatrix,
+    matrixToArrayWithObjects,
 } from './utils/statisticsUtils';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { StatisticsContext } from './context/useStatisticsContext';
 
 function App() {
     const [statistics, setStatistics] = useState([]);
-    // const statistics = useContext(StatisticsContext);
 
     function handleFileUpload(e) {
         e.preventDefault();
@@ -33,8 +33,9 @@ function App() {
                     console.error(`Data on row ${error} is invalid`)
                 );
             }
+            const usableStatistics = matrixToArrayWithObjects(statisticsMatrix);
 
-            setStatistics(statisticsMatrix);
+            setStatistics(usableStatistics);
         };
     }
 
@@ -48,8 +49,10 @@ function App() {
                 <NavLink to="/most-points-overall">
                     Most points scored Overall
                 </NavLink>
-                <NavLink to="/most-points-based-on-time-played">Sorted</NavLink>
-                <NavLink to="/most-points-by-team">Sorted</NavLink>
+                <NavLink to="/most-points-based-on-time-played">
+                    Most Points Based On Time Played
+                </NavLink>
+                <NavLink to="/most-points-by-team">Most Points By Team</NavLink>
                 <NavLink to="/best-player-in-a-team">Sorted</NavLink>
             </nav>
             <input type="file" onChange={handleFileUpload} />

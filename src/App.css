@@ -1,38 +1,70 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+.App nav {
+    display: flex;
+    max-width: 60%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.App a {
+    text-decoration: none;
+    color: #61dafb;
+    margin: 20px;
+}
+.App h1 {
+    max-width: 60%;
+}
+.App input::file-selector-button {
+    background-color: #282c34;
+    color: #61dafb;
+    border: none;
+    border-radius: 20px;
+}
+.App input::file-selector-button:hover {
+    background-color: #61dafb;
+    color: #282c34;
+    cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+    font-family: sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    max-width: 80%;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 30px #000000;
 }
 
-.App-link {
-  color: #61dafb;
+.content-table thead tr {
+    background-color: #61dafb;
+    color: #282c34;
+    text-align: center;
+    font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #61dafb;
 }

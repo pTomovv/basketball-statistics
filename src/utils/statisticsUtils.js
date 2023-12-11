@@ -8,10 +8,20 @@ function formatArrayToMatrix(array) {
         .map((row) => row.split(',').map(trimString));
 }
 
+function matrixToArrayWithObjects(arr) {
+    return arr.map((row) => {
+        const [name, team, time, points] = row;
+        return {
+            name,
+            team,
+            time,
+            points,
+        };
+    });
+}
+
 function trimString(string) {
     return string.trim();
 }
 
-
-
-export { splitStringToArray, formatArrayToMatrix };
+export { splitStringToArray, formatArrayToMatrix, matrixToArrayWithObjects };

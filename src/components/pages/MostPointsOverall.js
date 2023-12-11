@@ -1,31 +1,58 @@
 import { useContext } from 'react';
-import Table from '../Table';
 import { StatisticsContext } from '../../context/useStatisticsContext';
 
 const MostPointsOverall = () => {
     const statistics = useContext(StatisticsContext);
-    const playerStatistics = statistics.reduce((obj, next) => {
-        const [player, , , points] = next;
-        if (obj[player]) {
-            obj[player] += Number(points);
+
+    const playerStatistics = [];
+    statistics.forEach((obj) => {
+        let index = playerStatistics.findIndex((el) => {
+            return el.name === obj.name;
+        });
+
+        if (index !== -1) {
+            playerStatistics[index].points += +obj.points;
         } else {
-            obj[player] = Number(points);
+            playerStatistics.push({
+                name: obj.name,
+                team: obj.team,
+                time: +obj.time,
+                points: +obj.points,
+            });
         }
-        return obj;
-    }, {});
-    const sortedStatistics = Object.entries(playerStatistics).sort(
-        (row1, ro2) => {
-            return ro2[1] - row1[1];
-        }
-    );
+    });
+
+    const sortedStatistics = playerStatistics.sort((obj1, obj2) => {
+        return obj2.points - obj1.points;
+    });
 
     return (
         <>
             <h1>Most points scored Overall</h1>
-            <Table
-                colNames={['Placement', 'Player Name', 'Points Scored']}
-                statistics={sortedStatistics}
-            />
+            <table className="content-table">
+                <thead>
+                    <tr>
+                        <th>Placement</th>
+                        <th>Player Name</th>
+                        <th>Team</th>
+                        <th>Time Played</th>
+                        <th>Points Scored</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {sortedStatistics.map((obj, index) => {
+                        return (
+                            <tr key={index}>
+                                <td>{index + 1}.</td>
+                                <td>{obj.name}</td>
+                                <td>{obj.team}</td>
+                                <td>{obj.time}</td>
+                                <td>{obj.points}</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
         </>
     );
 };
